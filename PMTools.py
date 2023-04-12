@@ -4,19 +4,19 @@ from sys import argv
 # Package Managers //ToDo: add zypper, XBPS, and other PMs
 PackageManagers = {
 	"pacman": {
-		"install": lambda pkg : runCommand(f"sudo pacman -S {pkg}"),
-		"remove": lambda pkg : runCommand(f"sudo pacman -Rns {pkg}"),
-		"update": lambda : runCommand("sudo pacman -Syu")
+		"install": lambda pkg : runCommand(f"pacman -S {pkg}", 1),
+		"remove": lambda pkg : runCommand(f"sudo pacman -Rns {pkg}", 1),
+		"update": lambda : runCommand("sudo pacman -Syu", 1)
 	},
 	"apt": {
-		"install": lambda pkg : runCommand(f"sudo apt install {pkg}"),
-		"remove": lambda pkg : runCommand(f"sudo apt remove {pkg}"),
-		"update": lambda : runCommand("sudo apt update; apt upgrade")
+		"install": lambda pkg : runCommand(f"sudo apt install {pkg}", 1),
+		"remove": lambda pkg : runCommand(f"sudo apt remove {pkg}", 1),
+		"update": lambda : runCommand("sudo apt update; apt upgrade", 1)
 	},
 	"dnf": {
-		"install": lambda pkg : runCommand(f"sudo dnf install {pkg}"),
-		"remove": lambda pkg : runCommand(f"sudo dnf remove {pkg}"),
-		"update": lambda : runCommand("sudo dnf update")
+		"install": lambda pkg : runCommand(f"sudo dnf install {pkg}", 1),
+		"remove": lambda pkg : runCommand(f"sudo dnf remove {pkg}", 1),
+		"update": lambda : runCommand("sudo dnf update", 1)
 	}
 }
 
@@ -28,5 +28,8 @@ def getPackageManager():
 
 packageManager = getPackageManager()
 
+#def PMInstall(pkg):
+
+
 def PM(instruction, argv):
-	PackageManagers[packageManager][instruction](argv[0])
+	PackageManagers[packageManager][instruction]
