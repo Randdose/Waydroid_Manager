@@ -5,8 +5,8 @@ from PMTools import *
 
 # Access to system commands
 import sys
-#import subprocess
 
+#import subprocess
 if pkgIsInstalled("neofetch"):
 	PM("install", "lolcat")
 
