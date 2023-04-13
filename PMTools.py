@@ -28,8 +28,37 @@ def getPackageManager():
 
 packageManager = getPackageManager()
 
-#def PMInstall(pkg):
+# Install system package
+def PMInstall(pkg):
+	PackageManagers[packageManager]["install"](pkg)
 
+# Remove system package
+def PMRemove(pkg):
+	PackageManagers[packageManager]["remove"](pkg)
 
-def PM(instruction, argv):
-	PackageManagers[packageManager][instruction]
+# Update system packages
+def PMUpdate():
+	PackageManagers[packageManager]["update"]()
+
+# Get package manager's name
+def PMName():
+	return packageManager
+
+def pipInstall(pkg):
+	runCommand(f"pip install {pkg}")
+
+def pipRemove(pkg):
+	runCommand(f"pip uninstall {pkg}")
+
+def pipCheckPkg(pkg):
+	try:
+		(commandOutput("pip show pyside2"))
+	except:
+		return False
+	return True
+
+	#x = input("you don't have pyside2 installed do you want to install it? [Y/n]")
+	#if(x.lower() == "y" or x.lower() == ""):
+	#	PMInstall("pyside2")
+	#else:
+	#	sys.exit()
